@@ -1,0 +1,62 @@
+name: flex_yemen
+description: Flex Yemen - E-commerce and Digital Wallet Application
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  provider: ^6.1.1
+  carousel_slider: ^5.1.2
+  flutter_animate: ^4.3.0
+  flutter_svg: ^2.0.17
+  image_picker: ^1.0.7
+  cached_network_image: ^3.3.1
+  shared_preferences: ^2.2.2
+  intl: ^0.18.1
+  url_launcher: ^6.2.2
+  path_provider: ^2.1.5
+  shimmer: ^3.0.0
+  smooth_page_indicator: ^1.1.0
+  fl_chart: ^0.68.0
+  qr_flutter: ^4.1.0
+  flutter_rating_bar: ^4.0.1
+  badges: ^3.1.2
+  dropdown_button2: ^2.0.0
+  local_auth: ^2.1.6
+  connectivity_plus: ^6.0.5
+  share_plus: ^10.1.4
+  flutter_local_notifications: ^16.3.0
+  supabase_flutter: ^2.0.0
+  flutter_dotenv: ^5.1.0
+  google_fonts: ^6.2.1
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+  hive_flutter: ^1.1.0
+  geolocator: ^10.1.0
+  geocoding: ^2.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/svg/
+    - assets/icons/png/
+  fonts:
+    - family: Changa
+      fonts:
+        - asset: assets/fonts/Changa-Regular.ttf
+        - asset: assets/fonts/Changa-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Changa-Bold.ttf
+          weight: 700
