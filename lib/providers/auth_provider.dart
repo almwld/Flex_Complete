@@ -103,22 +103,6 @@ class AuthProvider extends ChangeNotifier {
     await LocalStorageService.saveUserData(guestData.toJson());
     await LocalStorageService.setBool('is_guest', true);
 
-    _isLoading = false;
-    notifyListeners();
-    return true;
-  }
-
-  Future<void> login(UserModel userData, {bool isGuest = false}) async {
-    _isLoggedIn = true;
-    _isGuest = isGuest;
-    _userData = userData;
-
-    await LocalStorageService.saveUserData(userData.toJson());
-    await LocalStorageService.setBool('is_guest', isGuest);
-
-    notifyListeners();
-  }
-
   Future<void> logout() async {
     await _authService.logout();
     _isLoggedIn = false;
