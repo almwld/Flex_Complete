@@ -5,6 +5,8 @@ enum NotificationType {
   system,
   chat,
   general,
+  payment,
+  promo,
 }
 
 class NotificationModel {
@@ -15,7 +17,7 @@ class NotificationModel {
   final NotificationType type;
   final String? imageUrl;
   final Map<String, dynamic>? data;
-  final bool isRead;
+  bool isRead;
   final DateTime createdAt;
 
   NotificationModel({
@@ -36,10 +38,7 @@ class NotificationModel {
       userId: json['user_id'] ?? '',
       title: json['title'] ?? '',
       body: json['body'] ?? '',
-      type: NotificationType.values.firstWhere(
-        (e) => e.name == json['type'],
-        orElse: () => NotificationType.general,
-      ),
+      type: _parseNotificationType(json['type']),
       imageUrl: json['image_url'],
       data: json['data'],
       isRead: json['is_read'] ?? false,
@@ -47,6 +46,19 @@ class NotificationModel {
           ? DateTime.parse(json['created_at'])
           : DateTime.now(),
     );
+  }
+
+  static NotificationType _parseNotificationType(String? type) {
+    switch (type) {
+      case 'order': return NotificationType.order;
+      case 'wallet': return NotificationType.wallet;
+      case 'promotion': return NotificationType.promotion;
+      case 'system': return NotificationType.system;
+      case 'chat': return NotificationType.chat;
+      case 'payment': return NotificationType.payment;
+      case 'promo': return NotificationType.promo;
+      default: return NotificationType.general;
+    }
   }
 
   Map<String, dynamic> toJson() {

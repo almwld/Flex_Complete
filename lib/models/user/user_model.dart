@@ -93,3 +93,10 @@ class UserModel {
     );
   }
 }
+
+// إضافة خصائص إضافية
+extension UserModelExtension on UserModel {
+  int get ordersCount => 0; // سيتم جلبها من API لاحقاً
+  int get favoritesCount => 0; // سيتم جلبها من API لاحقاً
+  double get rating => 0.0; // سيتم جلبها من API لاحقاً
+}

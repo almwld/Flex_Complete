@@ -86,7 +86,7 @@ class AuthProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    await Future.delayed(const Duration(milliseconds: 500)); // Simulate loading
+    await Future.delayed(const Duration(milliseconds: 500));
 
     final guestData = UserModel(
       id: 'guest_${DateTime.now().millisecondsSinceEpoch}',
@@ -102,6 +102,10 @@ class AuthProvider extends ChangeNotifier {
 
     await LocalStorageService.saveUserData(guestData.toJson());
     await LocalStorageService.setBool('is_guest', true);
+    _isLoading = false;
+    notifyListeners();
+    return true;
+  }
 
   Future<void> logout() async {
     await _authService.logout();

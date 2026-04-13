@@ -28,7 +28,7 @@ class ServiceGridItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.cardColor,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppColors.borderColor.withValues(alpha: 0.5)),
+          border: Border.all(color: AppColors.borderColor.withOpacity(0.5)),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -37,7 +37,7 @@ class ServiceGridItem extends StatelessWidget {
               width: 56,
               height: 56,
               decoration: BoxDecoration(
-                color: itemColor.withValues(alpha: 0.1),
+                color: itemColor.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(14),
               ),
               child: Icon(icon, color: itemColor, size: 28),

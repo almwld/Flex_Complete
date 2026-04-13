@@ -81,7 +81,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         decoration: BoxDecoration(
           color: AppColors.cardColor,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppColors.borderColor.withValues(alpha: 0.5)),
+          border: Border.all(color: AppColors.borderColor.withOpacity(0.5)),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

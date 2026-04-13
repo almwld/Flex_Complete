@@ -217,7 +217,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
               label: Text(option),
               selected: false,
               onSelected: (selected) {},
-              selectedColor: AppColors.goldColor.withValues(alpha: 0.2),
+              selectedColor: AppColors.goldColor.withOpacity(0.2),
               checkmarkColor: AppColors.goldColor,
             );
           }).toList(),

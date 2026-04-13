@@ -38,7 +38,7 @@ class MarketCard extends StatelessWidget {
               Container(
                 height: 80,
                 decoration: BoxDecoration(
-                  color: AppColors.goldColor.withValues(alpha: 0.1),
+                  color: AppColors.goldColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Center(
@@ -91,7 +91,7 @@ class MarketCard extends StatelessWidget {
                 width: 70,
                 height: 70,
                 decoration: BoxDecoration(
-                  color: AppColors.goldColor.withValues(alpha: 0.1),
+                  color: AppColors.goldColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Center(
@@ -150,7 +150,7 @@ class MarketCard extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: market.isOpen ? Colors.green.withValues(alpha: 0.1) : Colors.red.withValues(alpha: 0.1),
+                      color: market.isOpen ? Colors.green.withOpacity(0.1) : Colors.red.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(

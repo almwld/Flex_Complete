@@ -31,7 +31,7 @@ class ProfileMenuItem extends StatelessWidget {
             width: 44,
             height: 44,
             decoration: BoxDecoration(
-              color: (iconColor ?? AppColors.goldColor).withValues(alpha: 0.1),
+              color: (iconColor ?? AppColors.goldColor).withOpacity(0.1),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Icon(icon, color: iconColor ?? AppColors.goldColor),
@@ -60,7 +60,7 @@ class ProfileMenuItem extends StatelessWidget {
           Divider(
             height: 1,
             indent: 70,
-            color: AppColors.borderColor.withValues(alpha: 0.5),
+            color: AppColors.borderColor.withOpacity(0.5),
           ),
       ],
     );

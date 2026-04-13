@@ -40,7 +40,7 @@ class NotificationItem extends StatelessWidget {
                   width: 44,
                   height: 44,
                   decoration: BoxDecoration(
-                    color: _getIconColor().withValues(alpha: 0.1),
+                    color: _getIconColor().withOpacity(0.1),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Icon(
@@ -78,7 +78,7 @@ class NotificationItem extends StatelessWidget {
                         _formatTime(),
                         style: TextStyle(
                           fontSize: 11,
-                          color: AppColors.textSecondary.withValues(alpha: 0.7),
+                          color: AppColors.textSecondary.withOpacity(0.7),
                         ),
                       ),
                     ],

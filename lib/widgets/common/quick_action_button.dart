@@ -31,7 +31,7 @@ class QuickActionButton extends StatelessWidget {
               height: 48,
               decoration: BoxDecoration(
                 gradient: isGradient ? AppColors.goldGradient : null,
-                color: isGradient ? null : AppColors.goldColor.withValues(alpha: 0.1),
+                color: isGradient ? null : AppColors.goldColor.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(

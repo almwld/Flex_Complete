@@ -25,7 +25,7 @@ class SectionHeader extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(6),
               decoration: BoxDecoration(
-                color: AppColors.goldColor.withValues(alpha: 0.1),
+                color: AppColors.goldColor.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Icon(icon, color: AppColors.goldColor, size: 18),

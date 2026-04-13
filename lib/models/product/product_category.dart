@@ -6,6 +6,7 @@ class ProductCategory {
   final String icon;
   final String? imageUrl;
   final int productCount;
+  final int marketCount;
   final String? parentId;
   final bool isActive;
   final int sortOrder;
@@ -18,6 +19,7 @@ class ProductCategory {
     required this.icon,
     this.imageUrl,
     this.productCount = 0,
+    this.marketCount = 0,
     this.parentId,
     this.isActive = true,
     this.sortOrder = 0,
@@ -32,6 +34,7 @@ class ProductCategory {
       icon: json['icon'] ?? 'category',
       imageUrl: json['image_url'],
       productCount: json['product_count'] ?? 0,
+      marketCount: json['market_count'] ?? 0,
       parentId: json['parent_id'],
       isActive: json['is_active'] ?? true,
       sortOrder: json['sort_order'] ?? 0,
@@ -47,6 +50,7 @@ class ProductCategory {
       'icon': icon,
       'image_url': imageUrl,
       'product_count': productCount,
+      'market_count': marketCount,
       'parent_id': parentId,
       'is_active': isActive,
       'sort_order': sortOrder,

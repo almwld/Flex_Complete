@@ -28,7 +28,7 @@ class MarketDetailsScreen extends StatelessWidget {
                   child: Icon(
                     Icons.store,
                     size: 80,
-                    color: Colors.white.withValues(alpha: 0.5),
+                    color: Colors.white.withOpacity(0.5),
                   ),
                 ),
               ),
@@ -76,8 +76,8 @@ class MarketDetailsScreen extends StatelessWidget {
                             ),
                             decoration: BoxDecoration(
                               color: market.isOpen
-                                  ? Colors.green.withValues(alpha: 0.1)
-                                  : Colors.red.withValues(alpha: 0.1),
+                                  ? Colors.green.withOpacity(0.1)
+                                  : Colors.red.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Text(

@@ -49,3 +49,51 @@ class AppColors {
     stops: [0.0, 0.5, 1.0],
   );
 }
+
+// دوال مساعدة للحصول على الألوان حسب الثيم
+extension AppColorsExtension on AppColors {
+  static Color getCardColor(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark 
+        ? const Color(0xFF1E1E1E) 
+        : Colors.white;
+  }
+  
+  static Color getBackgroundColor(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark 
+        ? const Color(0xFF121212) 
+        : const Color(0xFFF5F5F5);
+  }
+  
+  static Color getTextColor(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark 
+        ? Colors.white 
+        : const Color(0xFF1E2329);
+  }
+  
+  static Color getSecondaryTextColor(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark 
+        : const Color(0xFF707A8A);
+  }
+  
+  static Color getDividerColor(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark 
+        ? const Color(0xFF2C2C2C) 
+        : const Color(0xFFE0E0E0);
+  }
+  
+  static Color getBorderColor(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark 
+        ? const Color(0xFF3C3C3C) 
+        : const Color(0xFFE0E0E0);
+  }
+  
+  static Color getSurfaceColor(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark 
+        ? const Color(0xFF1E1E1E) 
+        : Colors.white;
+  }
+  
+  static const Color cardColor = Color(0xFFFFFFFF);
+  static const Color scaffoldBg = Color(0xFFF8F9FA);
+  static const Color borderColor = Color(0xFFE0E0E0);
+}

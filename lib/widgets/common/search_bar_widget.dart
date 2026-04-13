@@ -28,7 +28,7 @@ class SearchBarWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.cardColor,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.borderColor.withValues(alpha: 0.5)),
+        border: Border.all(color: AppColors.borderColor.withOpacity(0.5)),
       ),
       child: TextField(
         controller: controller,

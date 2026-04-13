@@ -19,7 +19,7 @@ class ViewModeSelector extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.cardColor,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.goldColor.withValues(alpha: 0.3)),
+        border: Border.all(color: AppColors.goldColor.withOpacity(0.3)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
