@@ -35,7 +35,7 @@ class ProductCard extends StatelessWidget {
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
-                  color: AppColors.goldColor.withValues(alpha: 0.1),
+                  color: AppColors.goldColor.withOpacity(0.1),
                   borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
                 ),
                 child: Stack(
@@ -149,7 +149,7 @@ class ProductCard extends StatelessWidget {
                 width: 80,
                 height: 80,
                 decoration: BoxDecoration(
-                  color: AppColors.goldColor.withValues(alpha: 0.1),
+                  color: AppColors.goldColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Icon(

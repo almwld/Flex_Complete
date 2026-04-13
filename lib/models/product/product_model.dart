@@ -1,6 +1,7 @@
 class ProductModel {
   final String id;
   final String title;
+  final String name;           // لإظهار اسم المنتج (مرادف لـ title)
   final String description;
   final double price;
   final double? originalPrice;
@@ -11,6 +12,7 @@ class ProductModel {
   final String city;
   final String sellerId;
   final String sellerName;
+  final String? marketName;    // اسم المتجر
   final double? rating;
   final int? reviewCount;
   final int? reviews;
@@ -18,6 +20,7 @@ class ProductModel {
   final bool isFeatured;
   final bool isNew;
   final bool isAuction;
+  final bool isFavorite;       // للمفضلة
   final DateTime? auctionEndTime;
   final double? currentBid;
   final int stock;
@@ -25,9 +28,14 @@ class ProductModel {
   final int? discount;
   final Map<String, String>? specifications;
 
+  // Getters للتنسيق
+  String get formattedPrice => '${price.toStringAsFixed(0)} ر.ي';
+  String get formattedOldPrice => oldPrice != null ? '${oldPrice!.toStringAsFixed(0)} ر.ي' : '';
+
   ProductModel({
     required this.id,
     required this.title,
+    this.name = '',
     this.description = '',
     required this.price,
     this.originalPrice,
@@ -38,6 +46,7 @@ class ProductModel {
     this.city = 'صنعاء',
     this.sellerId = '',
     this.sellerName = '',
+    this.marketName,
     this.rating,
     this.reviewCount,
     this.reviews,
@@ -45,6 +54,7 @@ class ProductModel {
     this.isFeatured = false,
     this.isNew = false,
     this.isAuction = false,
+    this.isFavorite = false,
     this.auctionEndTime,
     this.currentBid,
     this.stock = 0,
@@ -57,6 +67,7 @@ class ProductModel {
     return ProductModel(
       id: json['id'] ?? '',
       title: json['title'] ?? '',
+      name: json['name'] ?? json['title'] ?? '',
       description: json['description'] ?? '',
       price: (json['price'] ?? 0).toDouble(),
       originalPrice: json['original_price']?.toDouble(),
@@ -67,25 +78,21 @@ class ProductModel {
       city: json['city'] ?? '',
       sellerId: json['seller_id'] ?? '',
       sellerName: json['seller_name'] ?? '',
+      marketName: json['market_name'] ?? json['seller_name'],
       rating: json['rating']?.toDouble(),
       reviewCount: json['review_count'],
       reviews: json['reviews'],
-      createdAt: json['created_at'] != null
-          ? DateTime.parse(json['created_at'])
-          : DateTime.now(),
+      createdAt: json['created_at'] != null ? DateTime.parse(json['created_at']) : DateTime.now(),
       isFeatured: json['is_featured'] ?? false,
       isNew: json['is_new'] ?? false,
       isAuction: json['is_auction'] ?? false,
-      auctionEndTime: json['auction_end_time'] != null
-          ? DateTime.parse(json['auction_end_time'])
-          : null,
+      isFavorite: json['is_favorite'] ?? false,
+      auctionEndTime: json['auction_end_time'] != null ? DateTime.parse(json['auction_end_time']) : null,
       currentBid: json['current_bid']?.toDouble(),
       stock: json['stock'] ?? 0,
       inStock: json['in_stock'] ?? true,
       discount: json['discount'],
-      specifications: json['specifications'] != null
-          ? Map<String, String>.from(json['specifications'])
-          : null,
+      specifications: json['specifications'] != null ? Map<String, String>.from(json['specifications']) : null,
     );
   }
 
@@ -93,6 +100,7 @@ class ProductModel {
     return {
       'id': id,
       'title': title,
+      'name': name,
       'description': description,
       'price': price,
       'original_price': originalPrice,
@@ -103,6 +111,7 @@ class ProductModel {
       'city': city,
       'seller_id': sellerId,
       'seller_name': sellerName,
+      'market_name': marketName,
       'rating': rating,
       'review_count': reviewCount,
       'reviews': reviews,
@@ -110,6 +119,7 @@ class ProductModel {
       'is_featured': isFeatured,
       'is_new': isNew,
       'is_auction': isAuction,
+      'is_favorite': isFavorite,
       'auction_end_time': auctionEndTime?.toIso8601String(),
       'current_bid': currentBid,
       'stock': stock,
@@ -122,61 +132,5 @@ class ProductModel {
   double? get discountPercentage {
     if (oldPrice == null || oldPrice! <= price) return null;
     return ((oldPrice! - price) / oldPrice! * 100);
-  }
-
-  ProductModel copyWith({
-    String? id,
-    String? title,
-    String? description,
-    double? price,
-    double? originalPrice,
-    double? oldPrice,
-    List<String>? images,
-    String? category,
-    String? subcategory,
-    String? city,
-    String? sellerId,
-    String? sellerName,
-    double? rating,
-    int? reviewCount,
-    int? reviews,
-    DateTime? createdAt,
-    bool? isFeatured,
-    bool? isNew,
-    bool? isAuction,
-    DateTime? auctionEndTime,
-    double? currentBid,
-    int? stock,
-    bool? inStock,
-    int? discount,
-    Map<String, String>? specifications,
-  }) {
-    return ProductModel(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      description: description ?? this.description,
-      price: price ?? this.price,
-      originalPrice: originalPrice ?? this.originalPrice,
-      oldPrice: oldPrice ?? this.oldPrice,
-      images: images ?? this.images,
-      category: category ?? this.category,
-      subcategory: subcategory ?? this.subcategory,
-      city: city ?? this.city,
-      sellerId: sellerId ?? this.sellerId,
-      sellerName: sellerName ?? this.sellerName,
-      rating: rating ?? this.rating,
-      reviewCount: reviewCount ?? this.reviewCount,
-      reviews: reviews ?? this.reviews,
-      createdAt: createdAt ?? this.createdAt,
-      isFeatured: isFeatured ?? this.isFeatured,
-      isNew: isNew ?? this.isNew,
-      isAuction: isAuction ?? this.isAuction,
-      auctionEndTime: auctionEndTime ?? this.auctionEndTime,
-      currentBid: currentBid ?? this.currentBid,
-      stock: stock ?? this.stock,
-      inStock: inStock ?? this.inStock,
-      discount: discount ?? this.discount,
-      specifications: specifications ?? this.specifications,
-    );
   }
 }
