@@ -1,124 +1,101 @@
 import 'package:flutter/material.dart';
 import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_strings.dart';
 import '../../models/product/product_category.dart';
 
-class CategoriesScreen extends StatefulWidget {
+class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
 
-  @override
-  State<CategoriesScreen> createState() => _CategoriesScreenState();
-}
+  final List<ProductCategory> categories = const [
+    ProductCategory(id: '1', name: 'المطاعم', nameAr: 'المطاعم', icon: 'restaurant', marketCount: 25),
+    ProductCategory(id: '2', name: 'الكافيهات', nameAr: 'الكافيهات', icon: 'local_cafe', marketCount: 18),
+    ProductCategory(id: '3', name: 'السوبرماركت', nameAr: 'السوبرماركت', icon: 'shopping_cart', marketCount: 32),
+    ProductCategory(id: '4', name: 'الصيدليات', nameAr: 'الصيدليات', icon: 'local_pharmacy', marketCount: 15),
+    ProductCategory(id: '5', name: 'المولات', nameAr: 'المولات', icon: 'shopping_bag', marketCount: 8),
+    ProductCategory(id: '6', name: 'الإلكترونيات', nameAr: 'الإلكترونيات', icon: 'devices', marketCount: 12),
+    ProductCategory(id: '7', name: 'الملابس', nameAr: 'الملابس', icon: 'checkroom', marketCount: 45),
+    ProductCategory(id: '8', name: 'المكياج', nameAr: 'المكياج', icon: 'face', marketCount: 20),
+    ProductCategory(id: '9', name: 'الرياضة', nameAr: 'الرياضة', icon: 'sports_soccer', marketCount: 10),
+    ProductCategory(id: '10', name: 'الكتب', nameAr: 'الكتب', icon: 'menu_book', marketCount: 6),
+    ProductCategory(id: '11', name: 'الألعاب', nameAr: 'الألعاب', icon: 'toys', marketCount: 14),
+    ProductCategory(id: '12', name: 'الأثاث', nameAr: 'الأثاث', icon: 'chair', marketCount: 9),
+  ];
 
-class _CategoriesScreenState extends State<CategoriesScreen> {
-  List<ProductCategory> _categories = [];
-  bool _isLoading = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadCategories();
-  }
-
-  void _loadCategories() {
-    setState(() {
-      _categories = [
-        ProductCategory(id: '1', name: 'المطاعم', icon: Icons.restaurant, marketCount: 25),
-        ProductCategory(id: '2', name: 'الكافيهات', icon: Icons.local_cafe, marketCount: 18),
-        ProductCategory(id: '3', name: 'السوبرماركت', icon: Icons.shopping_cart, marketCount: 32),
-        ProductCategory(id: '4', name: 'الصيدليات', icon: Icons.local_pharmacy, marketCount: 15),
-        ProductCategory(id: '5', name: 'المولات', icon: Icons.shopping_bag, marketCount: 8),
-        ProductCategory(id: '6', name: 'الإلكترونيات', icon: Icons.devices, marketCount: 12),
-        ProductCategory(id: '7', name: 'الملابس', icon: Icons.checkroom, marketCount: 45),
-        ProductCategory(id: '8', name: 'المكياج', icon: Icons.face, marketCount: 20),
-        ProductCategory(id: '9', name: 'الرياضة', icon: Icons.sports_soccer, marketCount: 10),
-        ProductCategory(id: '10', name: 'الكتب', icon: Icons.menu_book, marketCount: 6),
-        ProductCategory(id: '11', name: 'الألعاب', icon: Icons.toys, marketCount: 14),
-        ProductCategory(id: '12', name: 'ال家具', icon: Icons.chair, marketCount: 9),
-      ];
-      _isLoading = false;
-    });
+  IconData _getIconData(String iconName) {
+    switch (iconName) {
+      case 'restaurant': return Icons.restaurant;
+      case 'local_cafe': return Icons.local_cafe;
+      case 'shopping_cart': return Icons.shopping_cart;
+      case 'local_pharmacy': return Icons.local_pharmacy;
+      case 'shopping_bag': return Icons.shopping_bag;
+      case 'devices': return Icons.devices;
+      case 'checkroom': return Icons.checkroom;
+      case 'face': return Icons.face;
+      case 'sports_soccer': return Icons.sports_soccer;
+      case 'menu_book': return Icons.menu_book;
+      case 'toys': return Icons.toys;
+      case 'chair': return Icons.chair;
+      default: return Icons.category;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldBg,
+      backgroundColor: AppColors.getBackgroundColor(context),
       appBar: AppBar(
-        title: const Text(AppStrings.categories),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: AppColors.cardColor,
-        foregroundColor: AppColors.textPrimary,
+        title: const Text('الفئات'),
+        backgroundColor: AppColors.getSurfaceColor(context),
       ),
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : GridView.builder(
-              padding: const EdgeInsets.all(16),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12,
-                childAspectRatio: 0.9,
-              ),
-              itemCount: _categories.length,
-              itemBuilder: (context, index) {
-                final category = _categories[index];
-                return _buildCategoryItem(category);
-              },
-            ),
-    );
-  }
-
-  Widget _buildCategoryItem(ProductCategory category) {
-    return InkWell(
-      onTap: () {
-        // Navigate to category products
-      },
-      borderRadius: BorderRadius.circular(16),
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: AppColors.cardColor,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppColors.borderColor.withOpacity(0.5)),
+      body: GridView.builder(
+        padding: const EdgeInsets.all(16),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 0.9,
+          crossAxisSpacing: 12,
+          mainAxisSpacing: 12,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(12),
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          final category = categories[index];
+          return GestureDetector(
+            onTap: () {},
+            child: Container(
               decoration: BoxDecoration(
-                gradient: AppColors.goldGradient,
-                borderRadius: BorderRadius.circular(12),
+                color: AppColors.getCardColor(context),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: AppColors.getBorderColor(context).withOpacity(0.5)),
               ),
-              child: Icon(
-                category.icon,
-                color: Colors.white,
-                size: 28,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: AppColors.goldColor.withOpacity(0.2),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      _getIconData(category.icon),
+                      color: AppColors.goldColor,
+                      size: 30,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    category.localizedName,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    '${category.marketCount} متجر',
+                    style: const TextStyle(fontSize: 11, color: Colors.grey),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 10),
-            Text(
-              category.name,
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              '${category.marketCount} متجر',
-              style: TextStyle(
-                fontSize: 10,
-                color: AppColors.textSecondary,
-              ),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
