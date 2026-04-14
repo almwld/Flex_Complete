@@ -1,91 +1,99 @@
 import 'package:flutter/material.dart';
-import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_strings.dart';
-import '../../widgets/common/user_profile_header.dart';
-import '../../widgets/common/profile_menu_item.dart';
-import '../../models/user/user_model.dart';
-import '../../providers/auth_provider.dart';
 import 'package:provider/provider.dart';
+import '../../core/constants/app_colors.dart';
+import '../../providers/auth_provider.dart';
+import '../../providers/view_mode_provider.dart';
+import '../settings/settings_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    final authProvider = context.watch<AuthProvider>();
-    final user = authProvider.user ?? _getMockUser();
-
-    return Scaffold(
-      backgroundColor: AppColors.scaffoldBg,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            UserProfileHeader(
-              user: user,
-              viewMode: context.watch<AuthProvider>().viewMode,
-              onEditProfile: () {},
-              onSettingsTap: () {
-                Navigator.pushNamed(context, '/settings');
-              },
-            ),
-            const SizedBox(height: 16),
-            _buildMenuSection(context),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildMenuSection(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(
-        color: AppColors.cardColor,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        children: [
-          ProfileMenuItem(
-            icon: Icons.shopping_bag_outlined,
-            title: 'طلباتي',
-            subtitle: 'تابع طلباتك السابقة',
-            onTap: () {
-              Navigator.pushNamed(context, '/orders');
-            },
-          ),
-          ProfileMenuItem(
-            icon: Icons.favorite_border,
-            title: 'المفضلة',
-            subtitle: 'قائمة منتجاتك المفضلة',
-            onTap: () {
-              Navigator.pushNamed(context, '/favorites');
-            },
-          ),
-          ProfileMenuItem(
-            icon: Icons.location_on_outlined,
-            title: 'العناوين',
-            subtitle: 'إدارة عناوين التوصيل',
-            onTap: () {},
-          ),
-          ProfileMenuItem(
-            icon: Icons.payment_outlined,
-            title: 'طرق الدفع',
-            subtitle: 'إدارة بطاقات الدفع',
-            onTap: () {},
-          ),
-        ],
-      ),
-    );
-  }
-
   UserModel _getMockUser() {
     return UserModel(
       id: '1',
-      name: 'أحمد محمد علي',
+      fullName: 'أحمد محمد علي',
       email: 'ahmed@example.com',
-      phone: '+967771234567',
-      avatarUrl: null,
-      createdAt: DateTime.now(),
+      phone: '777123456',
+      userType: 'customer',
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+    final user = authProvider.userData ?? _getMockUser();
+    final viewModeProvider = Provider.of<ViewModeProvider>(context);
+
+    return Scaffold(
+      backgroundColor: AppColors.getBackgroundColor(context),
+      appBar: AppBar(
+        title: const Text('حسابي'),
+        backgroundColor: AppColors.getSurfaceColor(context),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                color: AppColors.goldColor.withOpacity(0.1),
+              ),
+              child: Column(
+                children: [
+                  const CircleAvatar(
+                    radius: 50,
+                    backgroundColor: AppColors.goldColor,
+                    child: Icon(Icons.person, size: 50, color: Colors.white),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    user.fullName,
+                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    user.email,
+                    style: TextStyle(color: Colors.grey[600]),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            Card(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.shopping_bag, color: AppColors.goldColor),
+                    title: const Text('طلباتي'),
+                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                    onTap: () {},
+                  ),
+                  const Divider(height: 1),
+                  ListTile(
+                    leading: const Icon(Icons.favorite_border, color: AppColors.goldColor),
+                    title: const Text('المفضلة'),
+                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                    onTap: () {},
+                  ),
+                  const Divider(height: 1),
+                  ListTile(
+                    leading: const Icon(Icons.settings, color: AppColors.goldColor),
+                    title: const Text('الإعدادات'),
+                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const SettingsScreen()),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -5,7 +5,7 @@ import '../../models/product/product_category.dart';
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
 
-  final List<ProductCategory> categories = const [
+  final List<ProductCategory> categories = [
     ProductCategory(id: '1', name: 'المطاعم', nameAr: 'المطاعم', icon: 'restaurant', marketCount: 25),
     ProductCategory(id: '2', name: 'الكافيهات', nameAr: 'الكافيهات', icon: 'local_cafe', marketCount: 18),
     ProductCategory(id: '3', name: 'السوبرماركت', nameAr: 'السوبرماركت', icon: 'shopping_cart', marketCount: 32),
