@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../core/constants/app_colors.dart';
+import '../../models/user/user_model.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/view_mode_provider.dart';
 import '../settings/settings_screen.dart';
@@ -22,13 +23,13 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     final user = authProvider.userData ?? _getMockUser();
-    final viewModeProvider = Provider.of<ViewModeProvider>(context);
 
     return Scaffold(
       backgroundColor: AppColors.getBackgroundColor(context),
       appBar: AppBar(
         title: const Text('حسابي'),
         backgroundColor: AppColors.getSurfaceColor(context),
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Column(

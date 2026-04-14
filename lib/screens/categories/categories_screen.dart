@@ -45,6 +45,7 @@ class CategoriesScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('الفئات'),
         backgroundColor: AppColors.getSurfaceColor(context),
+        elevation: 0,
       ),
       body: GridView.builder(
         padding: const EdgeInsets.all(16),

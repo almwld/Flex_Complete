@@ -486,7 +486,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  AppCurrencyUtils.formatYemeniRial(price.toDouble()),
+                  "${price.toStringAsFixed(0)} ر.ي",
                   style: const TextStyle(
                     color: AppColors.goldColor,
                     fontWeight: FontWeight.bold,
