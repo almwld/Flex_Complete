@@ -100,3 +100,8 @@ extension UserModelExtension on UserModel {
   int get favoritesCount => 0; // سيتم جلبها من API لاحقاً
   double get rating => 0.0; // سيتم جلبها من API لاحقاً
 }
+
+// إضافة name getter للتوافق مع user_profile_header
+extension UserModelNameExtension on UserModel {
+  String get name => fullName;
+}

@@ -60,7 +60,6 @@ class ProfileMenuItem extends StatelessWidget {
           Divider(
             height: 1,
             indent: 70,
-            color: AppColors.borderColor.withOpacity(0.5),
           ),
       ],
     );

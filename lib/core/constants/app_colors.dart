@@ -30,6 +30,16 @@ class AppColors {
   static const Color primaryColor = Color(0xFF1E88E5);
   static const Color secondaryColor = Color(0xFF43A047);
   static const Color accentColor = Color(0xFFFFB300);
+  
+  // ألوان الثيم
+  static const Color cardColor = Color(0xFFFFFFFF);
+  static const Color scaffoldBg = Color(0xFFF8F9FA);
+  static const Color borderColor = Color(0xFFE0E0E0);
+  static const Color darkCard = Color(0xFF1E1E1E);
+  static const Color darkBackground = Color(0xFF121212);
+  static const Color darkSurface = Color(0xFF1E1E1E);
+  static const Color darkDivider = Color(0xFF2C2C2C);
+  static const Color lightDivider = Color(0xFFE0E0E0);
 
   // تدرجات ذهبية
   static const LinearGradient goldGradient = LinearGradient(
@@ -48,52 +58,33 @@ class AppColors {
     ],
     stops: [0.0, 0.5, 1.0],
   );
-}
-
-// دوال مساعدة للحصول على الألوان حسب الثيم
-extension AppColorsExtension on AppColors {
+  
+  // دوال مساعدة
   static Color getCardColor(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.dark 
-        ? const Color(0xFF1E1E1E) 
-        : Colors.white;
+    return Theme.of(context).brightness == Brightness.dark ? darkCard : cardColor;
   }
   
   static Color getBackgroundColor(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.dark 
-        ? const Color(0xFF121212) 
-        : const Color(0xFFF5F5F5);
+    return Theme.of(context).brightness == Brightness.dark ? darkBackground : backgroundGrey;
   }
   
   static Color getTextColor(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.dark 
-        ? Colors.white 
-        : const Color(0xFF1E2329);
+    return Theme.of(context).brightness == Brightness.dark ? Colors.white : textPrimary;
   }
   
   static Color getSecondaryTextColor(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.dark 
-        : const Color(0xFF707A8A);
+    return Theme.of(context).brightness == Brightness.dark ? const Color(0xFFAAAAAA) : textSecondary;
   }
   
   static Color getDividerColor(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.dark 
-        ? const Color(0xFF2C2C2C) 
-        : const Color(0xFFE0E0E0);
+    return Theme.of(context).brightness == Brightness.dark ? darkDivider : lightDivider;
   }
   
   static Color getBorderColor(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.dark 
-        ? const Color(0xFF3C3C3C) 
-        : const Color(0xFFE0E0E0);
+    return Theme.of(context).brightness == Brightness.dark ? const Color(0xFF3C3C3C) : borderColor;
   }
   
   static Color getSurfaceColor(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.dark 
-        ? const Color(0xFF1E1E1E) 
-        : Colors.white;
+    return Theme.of(context).brightness == Brightness.dark ? darkSurface : surface;
   }
-  
-  static const Color cardColor = Color(0xFFFFFFFF);
-  static const Color scaffoldBg = Color(0xFFF8F9FA);
-  static const Color borderColor = Color(0xFFE0E0E0);
 }
